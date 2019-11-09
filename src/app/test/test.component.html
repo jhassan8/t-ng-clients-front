@@ -1,0 +1,11 @@
+<button class="btn btn-primary my-3" (click)="toggle()">
+    {{ visible ? 'Hide' : 'Show' }}
+</button>
+<div class="card" *ngIf="visible">
+    <div class="card-header">Header List</div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of list">
+            {{ item }}
+        </li>
+    </ul>
+</div>
