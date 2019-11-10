@@ -7,11 +7,12 @@ import { FooterComponent } from './footer/footer.component';
 import { TestComponent } from './test/test.component';
 import { ClientsComponent } from './clients/clients.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/clients', pathMatch: 'full'},
-  {path: 'test', component: TestComponent},
-  {path: 'clients', component: ClientsComponent},
+  { path: '', redirectTo: '/clients', pathMatch: 'full' },
+  { path: 'test', component: TestComponent },
+  { path: 'clients', component: ClientsComponent },
 ]
 
 @NgModule({
@@ -24,7 +25,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
