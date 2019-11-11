@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'clients', component: ClientsComponent },
   { path: 'clients/crupdate', component: CrupdateComponent },
+  { path: 'clients/crupdate/:id', component: CrupdateComponent }
 ]
 
 @NgModule({

@@ -24,5 +24,13 @@ export class ClientService {
   saveClient(client: Client): Observable<Client> {
     return this.http.post<Client>(this.url, client, {headers: this.httpHeaders});
   }
+
+  getClient(id): Observable<Client> {
+    return this.http.get<Client>(`${this.url}/id/${id}`);
+  }
+
+  updateClient(client: Client): Observable<Client> {
+    return this.http.put<Client>(`${this.url}/${client.id}`, client, {headers: this.httpHeaders});
+  }
   
 }

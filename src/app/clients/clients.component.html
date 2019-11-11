@@ -11,6 +11,7 @@
             <th scope="col">Surname</th>
             <th scope="col">Email</th>
             <th scope="col">Date</th>
+            <th scope="col">Actions</th>
         </thead>
         <tbody>
             <tr *ngFor="let client of clients">
@@ -19,6 +20,7 @@
                 <td>{{client.surname}}</td>
                 <td>{{client.email}}</td>
                 <td>{{client.createAt}}</td>
+                <td><button type="button" [routerLink]="['/clients/crupdate', client.id]" class="btn btn-primary">Edit</button></td>
             </tr>
         </tbody>
     </table>
