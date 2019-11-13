@@ -23,7 +23,7 @@ export class CrupdateComponent implements OnInit {
     this.clientService.saveClient(this.client).subscribe(
       r => {
         this.router.navigate(['clients'])
-        Swal.fire('saved successful!', `the client ${r.name} has been saved.`, 'success');
+        Swal.fire('saved successful!', `the client ${r.client.name} has been saved.`, 'success');
       }
     );
   }
@@ -45,7 +45,7 @@ export class CrupdateComponent implements OnInit {
     this.clientService.updateClient(this.client).subscribe(
       r => {
         this.router.navigate(['clients'])
-        Swal.fire('updated successful!', `the client ${r.name} has been updated.`, 'success');
+        Swal.fire('updated successful!', `the client ${r.client.name} has been updated.`, 'success');
       }
     );
   }
