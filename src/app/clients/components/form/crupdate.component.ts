@@ -13,6 +13,8 @@ export class CrupdateComponent implements OnInit {
   title: string = "Create new client";
   client: Client = new Client();
 
+  errors: string[]
+
   constructor(private clientService: ClientService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,6 +26,9 @@ export class CrupdateComponent implements OnInit {
       r => {
         this.router.navigate(['clients'])
         Swal.fire('saved successful!', `the client ${r.client.name} has been saved.`, 'success');
+      },
+      e => {
+        this.errors = e.error.errors as string[];
       }
     );
   }
@@ -46,6 +51,9 @@ export class CrupdateComponent implements OnInit {
       r => {
         this.router.navigate(['clients'])
         Swal.fire('updated successful!', `the client ${r.client.name} has been updated.`, 'success');
+      },
+      e => {
+        this.errors = e.error.errors as string[];
       }
     );
   }
