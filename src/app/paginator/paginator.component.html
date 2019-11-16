@@ -1,0 +1,18 @@
+<ul class="pagination" *ngIf="pages.length > 0">
+    <li class="page-item" [ngClass]="{disabled: paginator.first}">
+        <a class="page-link" [routerLink]="['/clients/page/', 0]">First</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled: paginator.first}">
+        <a class="page-link" [routerLink]="['/clients/page/', (paginator.number-1)]">&laquo;</a>
+    </li>
+    <li *ngFor="let p of pages">
+        <a class="page-link text-white bg-dark" *ngIf="p-1 == paginator.number">{{p}}</a>
+        <a class="page-link" *ngIf="p-1 != paginator.number" [routerLink]="['/clients/page/', (p - 1)]">{{p}}</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled: paginator.last}">
+        <a class="page-link" [routerLink]="['/clients/page/', (paginator.number+1)]">&raquo;</a>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': paginator.last}">
+        <a class="page-link" [routerLink]="['/clients/page/', (paginator.totalPages-1)]">Last</a>
+    </li>
+</ul>

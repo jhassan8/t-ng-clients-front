@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CrupdateComponent } from './clients/components/form/crupdate.component';
 import localeES from '@angular/common/locales/es-AR';
 import { registerLocaleData } from '@angular/common';
+import { PaginatorComponent } from './paginator/paginator.component';
 registerLocaleData(localeES, 'es-AR');
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
     FooterComponent,
     TestComponent,
     ClientsComponent,
-    CrupdateComponent
+    CrupdateComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
