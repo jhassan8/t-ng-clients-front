@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Client } from '../models/client.model';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { formatDate, DatePipe, registerLocaleData } from '@angular/common';
+import localeES from '@angular/common/locales/es-AR';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,22 @@ export class ClientService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.url);
+    //return this.http.get<Client[]>(this.url);
+    return this.http.get(this.url).pipe(
+      map(r => {
+        let c = r as Client[];
+        return c.map(c => {
+          c.name = c.name.toUpperCase();
+          c.surname = c.name.toUpperCase();
+          // not is a string implements with pipe
+          // c.createAt = formatDate(c.createAt, 'dd/MM/yyyy', 'en-US');
+          // using pipe in ts
+          // registerLocaleData(localeES, 'es-AR');
+          // c.createAt = new DatePipe('es-AR').transform(c.createAt, 'EEEE dd, MMMM yyyy');
+          return c;
+        });
+      })
+    );
   }
 
   saveClient(client: Client): Observable<any> {
