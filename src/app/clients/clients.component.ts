@@ -39,13 +39,23 @@ export class ClientsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.clientService.getClients().pipe(
-      tap(clients => {
-        clients.forEach(c => {
+    // this.clientService.getClients().pipe(
+    //   tap(clients => {
+    //     clients.forEach(c => {
+    //       console.log(c.name);
+    //     })
+    //   })
+    // ).subscribe(clients => this.clients = clients);
+
+    this.clientService.getClientsPaggined(0).pipe(
+      tap(r => {
+        console.log(r);
+        (r.content as Client[]).forEach(c => {
           console.log(c.name);
         })
       })
-    ).subscribe(clients => this.clients = clients);
+    ).subscribe(r => this.clients = r.content as Client[]);
+    
   }
 
 }

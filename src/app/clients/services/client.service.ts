@@ -41,6 +41,20 @@ export class ClientService {
     );
   }
 
+  getClientsPaggined(page: number): Observable<any> {
+    //return this.http.get<Client[]>(this.url);
+    return this.http.get(this.url+ '/page/' + page).pipe(
+      map((r: any) => {
+        (r.content as Client[]).map(c => {
+          c.name = c.name.toUpperCase();
+          c.surname = c.name.toUpperCase();
+          return c;
+        });
+        return r;
+      })
+    );
+  }
+
   saveClient(client: Client): Observable<any> {
     return this.http.post<any>(this.url, client, {headers: this.httpHeaders}).pipe(
       catchError(e => {
