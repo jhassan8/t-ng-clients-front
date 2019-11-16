@@ -3,6 +3,7 @@ import { Client } from './models/client.model';
 import { ClientService } from './services/client.service';
 import Swal from 'sweetalert2';
 import { tap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
@@ -13,7 +14,7 @@ export class ClientsComponent implements OnInit {
 
   clients: Client[];
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private activatedRoute: ActivatedRoute) { }
 
   delete(client: Client): void {
     Swal.fire({
@@ -47,14 +48,20 @@ export class ClientsComponent implements OnInit {
     //   })
     // ).subscribe(clients => this.clients = clients);
 
-    this.clientService.getClientsPaggined(0).pipe(
-      tap(r => {
-        console.log(r);
-        (r.content as Client[]).forEach(c => {
-          console.log(c.name);
+    this.activatedRoute.paramMap.subscribe( params => {
+
+      let page = +params.get('page') ? +params.get('page') : 0;
+
+      this.clientService.getClientsPaggined(page).pipe(
+        tap(r => {
+          console.log(r);
+          (r.content as Client[]).forEach(c => {
+            console.log(c.name);
+          })
         })
-      })
-    ).subscribe(r => this.clients = r.content as Client[]);
+      ).subscribe(r => this.clients = r.content as Client[]);
+
+    });
     
   }
 

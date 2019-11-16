@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, Component } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/clients', pathMatch: 'full' },
   { path: 'test', component: TestComponent },
   { path: 'clients', component: ClientsComponent },
+  { path: 'clients/page/:page', component: ClientsComponent },
   { path: 'clients/crupdate', component: CrupdateComponent },
   { path: 'clients/crupdate/:id', component: CrupdateComponent }
 ]
