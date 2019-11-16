@@ -16,11 +16,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let client of clients">
-                <td>{{client.id}}</td>
-                <td>{{client.name}}</td>
+                <td>{{client.id}</td>
+                <td>{{client.name | uppercase}}</td>
                 <td>{{client.surname}}</td>
                 <td>{{client.email}}</td>
-                <td>{{client.createAt}}</td>
+                <td>{{client.createAt | date: 'EEEE dd, MMMM yyyy'}}</td>
                 <td>
                     <button type="button" [routerLink]="['/clients/crupdate', client.id]" class="btn btn-primary">Edit</button>
                     <button type="button" (click)="delete(client)" class="btn btn-danger">Delete</button>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,6 +10,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { CrupdateComponent } from './clients/components/form/crupdate.component';
+import localeES from '@angular/common/locales/es-AR';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeES, 'es-AR');
 
 const routes: Routes = [
   { path: '', redirectTo: '/clients', pathMatch: 'full' },
@@ -34,7 +37,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [/*{provide: LOCALE_ID, useValue: 'es-AR'}*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
