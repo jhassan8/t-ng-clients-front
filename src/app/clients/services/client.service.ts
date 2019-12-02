@@ -93,5 +93,18 @@ export class ClientService {
       })
     );;
   }
+
+  uploadAvatar(file: File, id): Observable<Client> {
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("id", id);
+    return this.http.post(`${this.url}/upload`, formData).pipe(
+      map((r: any) => r.client as Client),
+      catchError(e => {
+        Swal.fire('Error', e.error.message, 'error');
+        return throwError(e);
+      })
+    );
+  }
   
 }
