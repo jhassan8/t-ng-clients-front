@@ -13,6 +13,7 @@ import { CrupdateComponent } from './clients/components/form/crupdate.component'
 import localeES from '@angular/common/locales/es-AR';
 import { registerLocaleData } from '@angular/common';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { DetailsComponent } from './clients/components/details/details.component';
 registerLocaleData(localeES, 'es-AR');
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'clients', component: ClientsComponent },
   { path: 'clients/page/:page', component: ClientsComponent },
   { path: 'clients/crupdate', component: CrupdateComponent },
-  { path: 'clients/crupdate/:id', component: CrupdateComponent }
+  { path: 'clients/crupdate/:id', component: CrupdateComponent },
+  { path: 'clients/view/:id', component: DetailsComponent }
 ]
 
 @NgModule({
@@ -32,7 +34,8 @@ const routes: Routes = [
     TestComponent,
     ClientsComponent,
     CrupdateComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,5 +5,6 @@ export class Client {
     surname: string;
     email: string;
     createAt: Date;
+    avatar: string;
     
 }
