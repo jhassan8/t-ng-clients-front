@@ -22,8 +22,7 @@ const routes: Routes = [
   { path: 'clients', component: ClientsComponent },
   { path: 'clients/page/:page', component: ClientsComponent },
   { path: 'clients/crupdate', component: CrupdateComponent },
-  { path: 'clients/crupdate/:id', component: CrupdateComponent },
-  { path: 'clients/view/:id', component: DetailsComponent }
+  { path: 'clients/crupdate/:id', component: CrupdateComponent }
 ]
 
 @NgModule({

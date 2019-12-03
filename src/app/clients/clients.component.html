@@ -17,7 +17,7 @@
         <tbody>
             <tr *ngFor="let client of clients">
                 <td>
-                    <button type="button" [routerLink]="['/clients/view', client.id]" class="btn btn-primary">{{client.id}}</button>
+                    <button (click)="openModal(client)" type="button" class="btn btn-primary">{{client.id}}</button>
                 </td>
                 <td>{{client.name | uppercase}}</td>
                 <td>{{client.surname}}</td>
@@ -33,3 +33,5 @@
     <paginator-nav *ngIf="paginator" [paginator]="paginator"></paginator-nav>
   </div>
 </div>
+
+<app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>

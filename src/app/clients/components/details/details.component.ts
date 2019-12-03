@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { ActivatedRoute } from '@angular/router';
 import { Client } from '../../models/client.model';
@@ -12,21 +12,21 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class DetailsComponent implements OnInit {
 
-  client: Client;
+  @Input() client: Client;
   file: File;
   progress: number = 0;
 
   constructor(private clientService: ClientService, private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activateRoute.paramMap.subscribe(p => {
-      let id =+ p.get('id');
-      if(id) {
-        this.clientService.getClient(id).subscribe(d => {
-          this.client = d;
-        })
-      }
-    })
+    // this.activateRoute.paramMap.subscribe(p => {
+    //   let id =+ p.get('id');
+    //   if(id) {
+    //     this.clientService.getClient(id).subscribe(d => {
+    //       this.client = d;
+    //     })
+    //   }
+    // })
   }
 
   selectFile(event) {
