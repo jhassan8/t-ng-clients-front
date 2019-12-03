@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class DetailsComponent implements OnInit {
 
   client: Client;
-  private file: File;
+  file: File;
 
   constructor(private clientService: ClientService, private activateRoute: ActivatedRoute) { }
 
@@ -29,13 +29,21 @@ export class DetailsComponent implements OnInit {
 
   selectFile(event) {
     this.file = event.target.files[0];
+    if(this.file.type.indexOf('image') < 0) {
+      Swal.fire('Format error: ', 'The file format is invalid.', 'error');
+      this.file = null;
+    }
   }
 
   uploadFile() {
-    this.clientService.uploadAvatar(this.file, this.client.id).subscribe(d => {
-      this.client = d;
-      Swal.fire('Sucess', 'the file has been upload correcly.', 'success');
-    });
+    if(!this.file) {
+      Swal.fire('Upload error: ', 'please select a image file.', 'error');
+    } else {
+      this.clientService.uploadAvatar(this.file, this.client.id).subscribe(d => {
+        this.client = d;
+        Swal.fire('Sucess', 'the file has been upload correcly.', 'success');
+      });
+    }
   }
 
 }
