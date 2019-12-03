@@ -21,6 +21,12 @@
                             <button [disabled]="!file" (click)="uploadFile()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
                         </div>
                     </div>
+                    
+                    <div class="progress" *ngIf="progress > 0">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width: progress + '%'}" attr.aria-valuenow="{{progress}}}" aria-valuemin="0" aria-valuemax="100">
+                            {{progress}}%
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm">
                     <img *ngIf="client.avatar" src="http://localhost:8080/api/clients/img/{{client.avatar}}" class="img-thumbnail rounded">

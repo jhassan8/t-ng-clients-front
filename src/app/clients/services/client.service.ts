@@ -3,7 +3,7 @@ import { Client } from '../models/client.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { formatDate, DatePipe, registerLocaleData } from '@angular/common';
@@ -94,17 +94,13 @@ export class ClientService {
     );;
   }
 
-  uploadAvatar(file: File, id): Observable<Client> {
+  uploadAvatar(file: File, id): Observable<HttpEvent<{}>> {
     let formData = new FormData();
     formData.append("file", file);
     formData.append("id", id);
-    return this.http.post(`${this.url}/upload`, formData).pipe(
-      map((r: any) => r.client as Client),
-      catchError(e => {
-        Swal.fire('Error', e.error.message, 'error');
-        return throwError(e);
-      })
-    );
+
+    let req = new HttpRequest('POST', `${this.url}/upload`, formData, { reportProgress: true });
+
+    return this.http.request(req);
   }
-  
 }
