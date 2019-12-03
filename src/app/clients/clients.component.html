@@ -19,7 +19,10 @@
         <tbody>
             <tr *ngFor="let client of clients">
                 <td>
-                    <button (click)="openModal(client)" type="button" class="btn btn-primary">{{client.id}}</button>
+                    <img (click)="openModal(client)" *ngIf="client.avatar" src="http://localhost:8080/api/clients/img/{{client.avatar}}" 
+                        class="img-thumbnail rounded" style="height: 38px; cursor: pointer;">
+                    <img (click)="openModal(client)" *ngIf="!client.avatar" src="http://localhost:8080/imgs/no-user.png" 
+                        class="img-thumbnail rounded" style="height: 38px; cursor: pointer;">
                 </td>
                 <td>{{client.name | uppercase}}</td>
                 <td>{{client.surname}}</td>
