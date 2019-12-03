@@ -48,6 +48,8 @@ export class DetailsComponent implements OnInit {
         } else if(event.type === HttpEventType.Response) {
           let response: any = event.body;
           this.client = response.client as Client;
+
+          this.modalService.uploadNotify.emit(this.client);
           Swal.fire('Sucess', response.message, 'success');
         }
       });

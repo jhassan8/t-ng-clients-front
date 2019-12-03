@@ -68,6 +68,15 @@ export class ClientsComponent implements OnInit {
         this.paginator = r;
       });
 
+      this.modalService.uploadNotify.subscribe(client => {
+        this.clients = this.clients.map(c => {
+          if(c.id == client.id) {
+            c.avatar = client.avatar;
+          }
+          return c;
+        })
+      });
+
     });
     
   }
