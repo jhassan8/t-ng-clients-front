@@ -4,6 +4,7 @@ import { ClientService } from './services/client.service';
 import Swal from 'sweetalert2';
 import { tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { ModalService } from './components/details/modal.service';
 
 @Component({
   selector: 'app-clients',
@@ -17,7 +18,7 @@ export class ClientsComponent implements OnInit {
 
   selectedClient: Client;
 
-  constructor(private clientService: ClientService, private activatedRoute: ActivatedRoute) { }
+  constructor(private clientService: ClientService, private activatedRoute: ActivatedRoute, private modalService: ModalService) { }
 
   delete(client: Client): void {
     Swal.fire({
@@ -73,6 +74,7 @@ export class ClientsComponent implements OnInit {
 
   openModal(client: Client) {
     this.selectedClient = client;
+    this.modalService.open();
   }
 
 }

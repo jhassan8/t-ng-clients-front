@@ -1,3 +1,5 @@
+<app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>
+
 <div class="card border-dark mb-3">
   <div class="card-header">Clients</div>
   <div class="card-body text-dark">
@@ -33,5 +35,3 @@
     <paginator-nav *ngIf="paginator" [paginator]="paginator"></paginator-nav>
   </div>
 </div>
-
-<app-details *ngIf="selectedClient" [client]="selectedClient"></app-details>

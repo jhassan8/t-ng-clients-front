@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClientService } from '../../services/client.service';
-import { ActivatedRoute } from '@angular/router';
 import { Client } from '../../models/client.model';
 import Swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
+import { ModalService } from './modal.service';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
   file: File;
   progress: number = 0;
 
-  constructor(private clientService: ClientService, private activateRoute: ActivatedRoute) { }
+  constructor(private clientService: ClientService, public modalService: ModalService) { }
 
   ngOnInit() {
     // this.activateRoute.paramMap.subscribe(p => {
@@ -52,6 +52,12 @@ export class DetailsComponent implements OnInit {
         }
       });
     }
+  }
+
+  closeModal() {
+    this.modalService.close();
+    this.file = null;
+    this.progress = 0;
   }
 
 }
