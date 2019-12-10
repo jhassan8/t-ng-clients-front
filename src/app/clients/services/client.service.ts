@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { formatDate, DatePipe, registerLocaleData } from '@angular/common';
 import localeES from '@angular/common/locales/es-AR';
+import { District } from '../models/district.model';
 
 @Injectable({
   providedIn: 'root'
@@ -102,5 +103,9 @@ export class ClientService {
     let req = new HttpRequest('POST', `${this.url}/upload`, formData, { reportProgress: true });
 
     return this.http.request(req);
+  }
+
+  getDistrics(): Observable<District[]> {
+    return this.http.get<District[]>(`${this.url}/districts`);
   }
 }

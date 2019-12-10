@@ -3,6 +3,7 @@ import { Client } from '../../models/client.model';
 import { ClientService } from '../../services/client.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
+import { District } from '../../models/district.model';
 
 @Component({
   selector: 'app-crupdate',
@@ -12,6 +13,7 @@ export class CrupdateComponent implements OnInit {
 
   title: string = "Create new client";
   client: Client = new Client();
+  districts: District[];
 
   errors: string[]
 
@@ -19,6 +21,7 @@ export class CrupdateComponent implements OnInit {
 
   ngOnInit() {
     this.loadClient();
+    this.clientService.getDistrics().subscribe(d => this.districts = d);
   }
 
   public create(): void {

@@ -1,3 +1,5 @@
+import { District } from './district.model';
+
 export class Client {
 
     id: number;
@@ -6,5 +8,6 @@ export class Client {
     email: string;
     createAt: Date;
     avatar: string;
-    
+    district: District
+
 }
