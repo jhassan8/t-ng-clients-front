@@ -40,6 +40,7 @@
                 <label for="district" class="col-form-label col-sm-2">District</label>
                 <div class="col-sm-6">
                     <select [compareWith]="compareDistrict" name="district" class="form-control" [(ngModel)]="client.district">
+                        <option [ngValue]="undefined">Select district</option>
                         <option *ngFor="let d of districts" [ngValue]="d">{{d.name}}</option>
                     </select> <!-- required -->
                     <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">

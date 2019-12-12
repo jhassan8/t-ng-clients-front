@@ -62,7 +62,7 @@ export class CrupdateComponent implements OnInit {
   }
 
   compareDistrict(a: District, b: District): boolean {
-    return ( a == null || b == null ? false: a.id === b.id )
+    return a == undefined && b == undefined ? true : ( a == null || b == null ? false: a.id === b.id )
   }
 
 }
